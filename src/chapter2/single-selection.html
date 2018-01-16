@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Functional Javascript</title>
+  <link rel="stylesheet" href="../../css/styles.css">
+  <script src="../../lib/d3.js"></script>
+</head>
+<body>
+  <p id="target"></p>
+    
+  <script>
+    d3.select('#target')
+        .text('Hello world!');
+
+    d3.select('p').html('<b>Hello</b>');
+  </script>
+</body>
+</html>
