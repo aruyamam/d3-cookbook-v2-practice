@@ -1,0 +1,12 @@
+body {
+  font-family: 'helvetica';
+}
+
+.box {
+  width: 200px;
+  height: 200px;
+  margin: 40px;
+  padding: 5px;
+  border: thin solid #969696;
+  text-align: center;
+}
