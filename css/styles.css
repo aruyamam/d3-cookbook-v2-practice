@@ -21,3 +21,34 @@ body {
   background-color: #add8e6;
   color: #f0f8ff;
 }
+
+.table {
+  width: 70%;
+}
+
+.table td, th {
+  padding: 5px;
+}
+
+.table-header {
+  background-color: #00afef;
+}
+
+.table-row-odd {
+  background-color: #ff8fff;
+}
+
+.table-row-even {
+  background-color: #d3d3d3;
+}
+
+.h-bar {
+  min-height: 15px;
+  min-width: 10px;
+  margin-bottom: 2px;
+  padding-right: 2px;
+  background-color: steelblue;
+  color: #f0f8ff;
+  font-size: 11px;
+  text-align: right;
+}
