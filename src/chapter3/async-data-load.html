@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Data Sort</title>
+  <link rel="stylesheet" href="../../css/styles.css">
+  <script src="../../lib/d3.js"></script>
+</head>
+<body>
+  <div id="chart"></div>
+
+  <script>
+    function render(data) {
+      const bars = d3.select('#chart').selectAll('div.h-bar')
+        .data(data);
+
+      bars.enter().append('div')
+          .attr('class', 'h-bar')
+          .style('width', d => (d.expense * 5) + 'px')
+        .append('span')
+          .text(d => d.category);
+    }
+
+    function load() {
+      d3.json('data.json', (err, json) => render(json));
+    }
+  </script>
+
+  <div class="control-group">
+    <button onclick="load()">Load Data from JSON feed</button>
+  </div>
+</body>
+</html>
