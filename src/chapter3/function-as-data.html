@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Function as Data</title>
+  <link rel="stylesheet" href="../../css/styles.css">
+  <script src="../../lib/d3.js"></script>
+</head>
+<body>
+  <div id="container"></div>
+
+  <script>
+    const data = [],
+          datum = x => 15 + x * x,
+
+          newData = () => {
+            data.push(datum);
+            return data;
+          };
+
+    function render() {
+      const divs = d3.select('#container')
+        .selectAll('div')
+        .data(newData);
+
+      divs.enter().append('div').append('span');
+      divs.attr('class', 'v-bar')
+            .style('height', (d, i) => d(i) + 'px')
+          .select('span')
+            .text((d, i) => d(i));
+      divs.exit().remove();
+    }
+
+    setInterval(() => render(), 1000);
+    render();
+  </script>
+</body>
+</html>
