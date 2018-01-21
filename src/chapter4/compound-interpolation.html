@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Compound Object Interpolation</title>
+  <link rel="stylesheet" href="../../css/styles.css">
+  <script src="../../lib/d3.js"></script>
+</head>
+<body>
+  <div id="compound" class="clear">
+    <span>Compound Interpolation<br></span>
+  </div>
+
+  <script>
+    const max  = 21,
+          data = [];
+
+    const compoundScale = d3.scalePow()
+            .exponent(2)
+            .domain([0, max])
+            .range([
+              { color: '#add8e6', height: '15px' },
+              { color: '#4169e1', height: '150px' },
+            ]);
+
+    for (let i = 0; i < max; ++i) { data.push(i); }
+
+    function render(data, scale, selector) {
+      const bars = d3.select(selector).selectAll('div.v-bar')
+              .data(data)
+
+      bars.enter()
+        .append('div')
+          .classed('v-bar', true)
+          .style('height', d => scale(d).height)
+          .style('background-color', d => scale(d).color)
+          .text((d, i) => i);
+    }
+
+    render(data, compoundScale, '#compound');
+  </script>
+
+</body>
+</html>

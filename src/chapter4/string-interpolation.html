@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>String Interpolation</title>
+  <link rel="stylesheet" href="../../css/styles.css">
+  <script src="../../lib/d3.js"></script>
+</head>
+<body>
+  <div id="font" class="clear">
+    <span>Font Interpolation<br></span>
+  </div>
+
+  <script>
+    const max  = 11,
+          data = [];
+
+    const sizeScale = d3.scaleLinear()
+        .domain([0, max])
+        .range([
+          'italic bold 12px/30px Georgia, serif',
+          'italic bold 120px/180px Georgia, serif'
+        ]);
+
+    for (let i = 0; i < max; ++i) { data.push(i); }
+
+    function render(data, scale, selector) {
+      const cells = d3.select(selector).selectAll('div.cell')
+          .data(data);
+
+      cells.enter()
+        .append('div')
+          .classed('cell', true)
+          .style('display', 'inline-block')
+        .append('span')
+          .style('font', (d, i) => {
+            return scale(d);
+          })
+          .text((d, i) => i);
+    }
+
+    render(data, sizeScale, '#font');
+  </script>
+  </div>
+</body>
+</html>

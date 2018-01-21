@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Time Scales</title>
+  <link rel="stylesheet" href="../../css/styles.css">
+  <script src="../../lib/d3.js"></script>
+</head>
+<body>
+  <div id="time" class="clear">
+    <span>Linear Time Progression<br></span>
+    <span>Mapping [01/01/2016, 12/31/2016] to [0, 1200]</span>
+  </div>
+
+  <script>
+    const start = new Date(2016, 0, 1),
+          end = new Date(2016, 11, 31),
+          range = [1, 1200],
+          time = d3.scaleTime().domain([start, end])
+            .rangeRound(range),
+          max = 12,
+          data = [];
+
+    for (let i = 0; i < max; ++i) {
+      const date = new Date(start.getTime());
+      date.setMonth(start.getMonth() + i);
+      data.push(date);
+    }
+
+    function render(data, scale, selector) {
+      d3.select(selector).selectAll('div.fixed-cell')
+          .data(data)
+        .enter()
+          .append('div')
+            .classed('fixed-cell', true)
+            .style('margin-left', d => scale(d) + 'px')
+            .html(d => {
+              const format = d3.timeFormat('%x');
+              return format(d) + '<br>' + scale(d) + 'px';
+            });
+    }
+
+    render(data, time, '#time');
+  </script>
+  </div>
+</body>
+</html>
