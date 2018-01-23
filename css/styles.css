@@ -106,3 +106,9 @@ button {
 .selected {
   background-color: #f08080;
 }
+
+.axis .grid-line {
+  stroke: black;
+  shape-rendering: crispEdges;
+  stroke-opacity: 0.2;
+}
